@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Neher - Product Director</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e0e0e0;
+            z-index: 1000;
+            padding: 1.5rem 0;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #111;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #111;
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 8rem 2rem 4rem;
+            display: none;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Home/Landing Page */
+        #home {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: #555;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* CTA Buttons */
+        .cta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 1.5rem;
+            border: 2px solid #111;
+            background: #fff;
+            color: #111;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .cta-btn.primary {
+            background: #111;
+            color: #fff;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .cta-btn.primary:hover {
+            background: #333;
+        }
+
+        /* Experience Page */
+        .experience-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .experience-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .experience-header p {
+            font-size: 1.25rem;
+            color: #666;
+        }
+
+        .skills {
+            margin-bottom: 4rem;
+        }
+
+        .skills h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            padding: 1.5rem;
+            border: 1px solid #e0e0e0;
+            transition: border-color 0.3s;
+        }
+
+        .skill-card:hover {
+            border-color: #111;
+        }
+
+        .skill-card h3 {
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .skill-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .timeline {
+            margin-top: 3rem;
+        }
+
+        .timeline h2 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .timeline-item {
+            padding: 2rem;
+            border-left: 2px solid #e0e0e0;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 2rem;
+            width: 10px;
+            height: 10px;
+            background: #111;
+            border-radius: 50%;
+        }
+
+        .timeline-item h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item .role {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item .period {
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item ul {
+            margin-left: 1.5rem;
+            color: #555;
+        }
+
+        .timeline-item li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.25rem;
+            }
+
+            .cta-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">David Neher</div>
+            <ul>
+                <li><a href="#" data-page="home">Home</a></li>
+                <li><a href="#" data-page="experience">Experience</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home/Landing Page -->
+    <section id="home" class="active">
+        <div class="hero">
+            <h1>David Neher</h1>
+            <div class="subtitle">Product Director</div>
+            <p>Building exceptional healthcare products for 8+ years. Passionate about creating user-centered solutions that improve patient outcomes and streamline clinical workflows.</p>
+            
+            <div class="cta-grid">
+                <a href="#" class="cta-btn primary" onclick="alert('Resume download would trigger here. Add your resume PDF link.'); return false;">
+                    📄 Download Resume
+                </a>
+                <a href="mailto:your.email@example.com" class="cta-btn">
+                    ✉️ Email Me
+                </a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" class="cta-btn">
+                    💼 LinkedIn
+                </a>
+                <a href="https://calendly.com/yourlink" target="_blank" class="cta-btn">
+                    📅 Schedule Meeting
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Page -->
+    <section id="experience">
+        <div class="container">
+            <div class="experience-header">
+                <h1>Experience & Expertise</h1>
+                <p>8+ years building healthcare products that matter</p>
+            </div>
+
+            <!-- Skills Section -->
+            <div class="skills">
+                <h2>Core Competencies</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3>Product Strategy</h3>
+                        <p>Defining product vision, roadmaps, and go-to-market strategies for healthcare solutions</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>User-Centered Design</h3>
+                        <p>Deep focus on patient and clinician needs through research and iterative testing</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Healthcare Domain</h3>
+                        <p>Expert knowledge of clinical workflows, HIPAA compliance, and healthcare regulations</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Cross-functional Leadership</h3>
+                        <p>Leading engineering, design, and clinical teams to deliver impactful products</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="timeline">
+                <h2>Career Highlights</h2>
+                
+                <div class="timeline-item">
+                    <h3>Senior Product Director</h3>
+                    <div class="role">Healthcare Technology Company</div>
+                    <div class="period">2021 - Present</div>
+                    <ul>
+                        <li>Led product strategy for flagship EHR integration platform serving 50+ health systems</li>
+                        <li>Drove 200% growth in user adoption through patient-centered feature development</li>
+                        <li>Managed cross-functional team of 15+ engineers, designers, and clinical experts</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Product Manager</h3>
+                    <div class="role">Digital Health Startup</div>
+                    <div class="period">2018 - 2021</div>
+                    <ul>
+                        <li>Built telehealth platform from 0 to 1, reaching 100K monthly active users</li>
+                        <li>Established product development processes and user research framework</li>
+                        <li>Collaborated with clinical advisors to ensure HIPAA compliance and clinical validity</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Associate Product Manager</h3>
+                    <div class="role">Healthcare Software Company</div>
+                    <div class="period">2016 - 2018</div>
+                    <ul>
+                        <li>Supported development of patient engagement tools for chronic disease management</li>
+                        <li>Conducted user research with 50+ clinicians to inform product requirements</li>
+                        <li>Analyzed product metrics and user feedback to drive continuous improvement</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Navigation
+        const navLinks = document.querySelectorAll('nav a[data-page]');
+        const sections = document.querySelectorAll('section');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetPage = link.getAttribute('data-page');
+                
+                // Remove active class from all sections
+                sections.forEach(section => section.classList.remove('active'));
+                
+                // Add active class to target section
+                document.getElementById(targetPage).classList.add('active');
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
